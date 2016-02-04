@@ -1,6 +1,6 @@
 {
     "name": "muffin/orderly",
-    "description": "Allows setting default order for your tables.",
+    "description": "Default ordering (behavior) for CakePHP 3",
     "type": "cakephp-plugin",
     "keywords": [
         "cakephp",
