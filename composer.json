@@ -1,0 +1,54 @@
+{
+    "name": "muffin/orderly",
+    "description": "Allows setting default order for your tables.",
+    "type": "cakephp-plugin",
+    "keywords": [
+        "cakephp",
+        "muffin",
+        "orderly"
+    ],
+    "homepage": "https://github.com/usemuffin/orderly",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jad Bitar",
+            "homepage": "http://jadb.io",
+            "role": "Author"
+        },
+        {
+            "name": "ADmad",
+            "homepage": "https://github.com/ADmad",
+            "role": "Author"
+        },
+        {
+            "name": "Others",
+            "homepage": "https://github.com/usemuffin/orderly/graphs/contributors"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/usemuffin/orderly/issues",
+        "source": "https://github.com/usemuffin/orderly"
+    },
+    "require": {
+        "cakephp/orm": "~3.2"
+    },
+    "require-dev": {
+        "cakephp/cakephp": "~3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Muffin\\Orderly\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Muffin\\Orderly\\Test\\": "tests",
+            "Cake\\Test\\Fixture\\": "vendor/cakephp/cakephp/tests/Fixture"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
