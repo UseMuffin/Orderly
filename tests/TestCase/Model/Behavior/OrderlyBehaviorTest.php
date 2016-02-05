@@ -104,6 +104,18 @@ class OrderlyBehaviorTest extends TestCase
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->query();
         $behavior->beforeFind($event, $query, new \ArrayObject, true);
-        debug($query->clause('order'));
+        $this->assertEquals(1, count($query->clause('order')));
+    }
+
+    public function testBeforeFindQueryWithOrder()
+    {
+        $this->Table->addBehavior('Muffin/Orderly.Orderly');
+        $behavior = $this->Table->behaviors()->Orderly;
+
+        $event = new Event('Model.beforeFind', $this);
+        $query = $this->Table->find()
+            ->order('author_id');
+        $behavior->beforeFind($event, $query, new \ArrayObject, true);
+        $this->assertEquals(1, count($query->clause('order')));
     }
 }
