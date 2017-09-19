@@ -41,7 +41,7 @@ Here's how you can add the `Orderly` behavior for your tables:
 $this->addBehavior('Muffin/Orderly.Orderly');
 
 // Default ordering using specified field.
-$this->addBehavior('Muffin/Orderly.Orderly', ['order' => 'field_name']);
+$this->addBehavior('Muffin/Orderly.Orderly', ['order' => $this->aliasField('field_name')]);
 ```
 
 Value for `order` key can any valid value that `\Cake\ORM\Query::order()` takes.
@@ -72,7 +72,7 @@ $this->addBehavior('Muffin/Orderly.Orderly', [
         }
     ],
     [
-        'order' => ['another_field'],
+        'order' => ['Alias.another_field'],
         'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
             //return a boolean
         }
