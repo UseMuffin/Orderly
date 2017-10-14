@@ -73,7 +73,6 @@ class OrderlyBehaviorTest extends TestCase
             $this->Table->behaviors()->Orderly->config()['orders']
         );
 
-
         $this->Table->removeBehavior('Orderly');
         $this->Table->addBehavior('Muffin/Orderly.Orderly', [
             [],
