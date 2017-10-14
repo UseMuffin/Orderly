@@ -30,10 +30,11 @@
         "source": "https://github.com/usemuffin/orderly"
     },
     "require": {
-        "cakephp/orm": "~3.0"
+        "cakephp/orm": "^3.0"
     },
     "require-dev": {
-        "cakephp/cakephp": "~3.0"
+        "cakephp/cakephp": "^3.0",
+        "phpunit/phpunit": "<6.0"
     },
     "autoload": {
         "psr-4": {
@@ -44,11 +45,6 @@
         "psr-4": {
             "Muffin\\Orderly\\Test\\": "tests",
             "Cake\\Test\\Fixture\\": "vendor/cakephp/cakephp/tests/Fixture"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
         }
     }
 }
