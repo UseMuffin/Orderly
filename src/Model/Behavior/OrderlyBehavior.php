@@ -62,8 +62,8 @@ class OrderlyBehavior extends Behavior
         }
 
         $default = [
-            'order' => $this->_table->aliasField($this->_table->displayField()),
-            'callback' => null
+            'order' => $this->_table->aliasField($this->_table->getDisplayField()),
+            'callback' => null,
         ];
 
         foreach ($orders as $key => $value) {
