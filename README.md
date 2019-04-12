@@ -21,12 +21,6 @@ Then load the plugin using the shell command:
 bin/cake plugin load Muffin/Orderly
 ```
 
-or by manually adding statement shown below to your app's `config/bootstrap.php`:
-
-```php
-Plugin::load('Muffin/Orderly');
-```
-
 ## What is does
 
 Orderly allow you to set default `ORDER` clause for your table queries, similar
@@ -54,7 +48,7 @@ condition using `callback` option. The order will be applied if callback returns
 ```php
 $this->addBehavior('Muffin/Orderly.Orderly', [
     'order' => ['Alias.field_name' => 'DESC'],
-    'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+    'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
         //return a boolean
     }
 ]);
@@ -67,13 +61,13 @@ on return value of their respective callbacks:
 $this->addBehavior('Muffin/Orderly.Orderly', [
     [
         'order' => ['Alias.field_name' => 'DESC'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
     [
         'order' => ['Alias.another_field'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
@@ -97,7 +91,7 @@ http://github.com/usemuffin/orderly/issues
 
 ## License
 
-Copyright (c) 2015, [Use Muffin][muffin] and licensed under [The MIT License][mit].
+Copyright (c) 2015-Present, [Use Muffin][muffin] and licensed under [The MIT License][mit].
 
 [cakephp]:http://cakephp.org
 [composer]:http://getcomposer.org

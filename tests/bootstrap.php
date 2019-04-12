@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Test suite bootstrap.
  *
@@ -26,5 +27,3 @@ if (file_exists($root . '/config/bootstrap.php')) {
 }
 
 require $root . '/vendor/cakephp/cakephp/tests/bootstrap.php';
-
-\Cake\Core\Plugin::load('Muffin/Orderly', ['path' => dirname(dirname(__FILE__)) . DS]);

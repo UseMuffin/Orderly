@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace Muffin\Orderly\Model\Behavior;
 
 use ArrayObject;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
 
@@ -14,7 +15,7 @@ class OrderlyBehavior extends Behavior
      * @param array $config Config
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -24,13 +25,13 @@ class OrderlyBehavior extends Behavior
     /**
      * Add default order clause to query as necessary.
      *
-     * @param \Cake\Event\Event $event Event
+     * @param \Cake\Event\EventInterface $event Event
      * @param \Cake\ORM\Query $query Query
      * @param \ArrayObject $options Options
      * @param bool $primary Boolean indicating whether it's primary query.
      * @return void
      */
-    public function beforeFind(Event $event, Query $query, ArrayObject $options, $primary)
+    public function beforeFind(EventInterface $event, Query $query, ArrayObject $options, bool $primary)
     {
         $orders = $this->_config['orders'];
 
@@ -50,10 +51,10 @@ class OrderlyBehavior extends Behavior
     /**
      * Normalize configuration.
      *
-     * @param mixed $orders Orders config
+     * @param array $orders Orders config
      * @return void
      */
-    protected function _normalizeConfig($orders)
+    protected function _normalizeConfig(array $orders)
     {
         if (empty($orders)) {
             $orders = [[]];

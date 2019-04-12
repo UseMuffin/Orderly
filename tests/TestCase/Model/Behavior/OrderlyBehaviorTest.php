@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Muffin\Orderly\Test\TestCase\Model\Behavior;
 
 use Cake\Event\Event;
@@ -7,7 +8,6 @@ use Cake\TestSuite\TestCase;
 
 class OrderlyBehaviorTest extends TestCase
 {
-
     public $fixtures = [
         'core.Posts',
     ];
@@ -34,8 +34,8 @@ class OrderlyBehaviorTest extends TestCase
         $expected = [
             [
                 'order' => $this->Table->aliasField($this->Table->getDisplayField()),
-                'callback' => null
-            ]
+                'callback' => null,
+            ],
         ];
         $this->assertEquals(
             $expected,
@@ -48,8 +48,8 @@ class OrderlyBehaviorTest extends TestCase
         $expected = [
             [
                 'order' => 'published',
-                'callback' => null
-            ]
+                'callback' => null,
+            ],
         ];
         $this->assertEquals(
             $expected,
@@ -65,8 +65,8 @@ class OrderlyBehaviorTest extends TestCase
         $expected = [
             [
                 'order' => 'Posts.title',
-                'callback' => $callback
-            ]
+                'callback' => $callback,
+            ],
         ];
         $this->assertEquals(
             $expected,
@@ -76,18 +76,18 @@ class OrderlyBehaviorTest extends TestCase
         $this->Table->removeBehavior('Orderly');
         $this->Table->addBehavior('Muffin/Orderly.Orderly', [
             [],
-            ['order' => 'published', 'callback' => $callback]
+            ['order' => 'published', 'callback' => $callback],
         ]);
 
         $expected = [
             [
                 'order' => 'Posts.title',
-                'callback' => null
+                'callback' => null,
             ],
             [
                 'order' => 'published',
-                'callback' => $callback
-            ]
+                'callback' => $callback,
+            ],
         ];
         $this->assertEquals(
             $expected,
@@ -102,7 +102,7 @@ class OrderlyBehaviorTest extends TestCase
 
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->query();
-        $behavior->beforeFind($event, $query, new \ArrayObject, true);
+        $behavior->beforeFind($event, $query, new \ArrayObject(), true);
         $this->assertEquals(1, count($query->clause('order')));
     }
 
@@ -114,7 +114,7 @@ class OrderlyBehaviorTest extends TestCase
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->find()
             ->order('author_id');
-        $behavior->beforeFind($event, $query, new \ArrayObject, true);
+        $behavior->beforeFind($event, $query, new \ArrayObject(), true);
         $this->assertEquals(1, count($query->clause('order')));
     }
 }
