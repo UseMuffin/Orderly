@@ -12,14 +12,14 @@ class OrderlyBehaviorTest extends TestCase
         'core.Posts',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->Table = TableRegistry::get('Posts');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 
