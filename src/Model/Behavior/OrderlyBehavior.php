@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Muffin\Orderly\Model\Behavior;
 
 use ArrayObject;

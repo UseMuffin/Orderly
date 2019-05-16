@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Muffin\Orderly\Test\TestCase\Model\Behavior;
 
 use Cake\Event\Event;
