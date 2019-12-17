@@ -33,8 +33,8 @@
         "cakephp/orm": "^4.0"
     },
     "require-dev": {
-        "cakephp/cakephp": "4.x-dev",
-        "phpunit/phpunit": "^8.0"
+        "cakephp/cakephp": "^4.0",
+        "phpunit/phpunit": "~8.5.0"
     },
     "autoload": {
         "psr-4": {
@@ -46,7 +46,5 @@
             "Muffin\\Orderly\\Test\\": "tests",
             "Cake\\Test\\Fixture\\": "vendor/cakephp/cakephp/tests/Fixture"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
