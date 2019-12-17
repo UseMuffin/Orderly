@@ -39,7 +39,8 @@ class OrderlyBehavior extends Behavior
         $args = [$query, $options, $primary];
 
         foreach ($orders as $config) {
-            if ((!empty($config['callback'])
+            if (
+                (!empty($config['callback'])
                     && call_user_func_array($config['callback'], $args)
                 ) || !$query->clause('order')
             ) {
