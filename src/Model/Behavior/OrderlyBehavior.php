@@ -32,17 +32,17 @@ class OrderlyBehavior extends Behavior
      */
     public function beforeFind(Event $event, Query $query, ArrayObject $options, $primary)
     {
+        if ($query->clause('order')) {
+            return;
+        }
+
         $orders = $this->_config['orders'];
-
-        $args = [$query, $options, $primary];
-
         foreach ($orders as $config) {
-            if ((!empty($config['callback'])
-                    && call_user_func_array($config['callback'], $args)
-                ) || !$query->clause('order')
+            if (
+                empty($config['callback'])
+                || call_user_func($config['callback'], $query, $options, $primary)
             ) {
                 $query->order($config['order']);
-                break;
             }
         }
     }
