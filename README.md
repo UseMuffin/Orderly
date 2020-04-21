@@ -1,7 +1,7 @@
 # Orderly
 
 [![Build Status](https://img.shields.io/travis/UseMuffin/Orderly/master.svg?style=flat-square)](https://travis-ci.org/UseMuffin/Orderly)
-[![Coverage](https://img.shields.io/codecov/c/github/UseMuffin/Orderly.svg?style=flat-square)](https://codecov.io/github/UseMuffin/Orderly)
+[![Coverage](https://img.shields.io/coveralls/github/UseMuffin/Orderly?style=flat-square)](https://coveralls.io/github/UseMuffin/Orderly)
 [![Total Downloads](https://img.shields.io/packagist/dt/muffin/orderly.svg?style=flat-square)](https://packagist.org/packages/muffin/orderly)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
