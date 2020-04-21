@@ -55,7 +55,7 @@ class OrderlyBehavior extends Behavior
      * @param array $orders Orders config
      * @return void
      */
-    protected function _normalizeConfig(array $orders)
+    protected function _normalizeConfig(array $orders): void
     {
         if (empty($orders)) {
             $orders = [[]];
