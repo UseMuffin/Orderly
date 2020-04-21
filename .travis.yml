@@ -2,7 +2,6 @@ language: php
 
 php:
   - 7.2
-  - 7.3
   - 7.4
 
 services:
@@ -11,7 +10,7 @@ services:
 
 env:
   matrix:
-    - DB=mysql db_dsn='mysql://travis@0.0.0.0/cakephp_test'
+    - DB=mysql db_dsn='mysql://root@127.0.0.1/cakephp_test'
     - DB=pgsql db_dsn='postgres://postgres@127.0.0.1/cakephp_test'
     - DB=sqlite db_dsn='sqlite:///:memory:'
 
@@ -32,19 +31,19 @@ matrix:
       env: PREFER_LOWEST=1
 
 before_script:
-  - phpenv config-rm xdebug.ini
+  - if [[ $TRAVIS_PHP_VERSION != 7.2 ]]; then phpenv config-rm xdebug.ini; fi
 
   - if [[ $PREFER_LOWEST != 1 ]]; then composer update --no-interaction; fi
   - if [[ $PREFER_LOWEST == 1 ]]; then composer update --no-interaction --prefer-lowest --prefer-stable; fi
 
-  - if [[ $DB = 'mysql' ]]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
-  - if [[ $DB = 'pgsql' ]]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
+  - if [[ $DB == 'mysql' ]]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
+  - if [[ $DB == 'pgsql' ]]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
-  - if [[ $PHPCS = 1 ]]; then composer require cakephp/cakephp-codesniffer:^4.0; fi
+  - if [[ $PHPCS == 1 ]]; then composer require cakephp/cakephp-codesniffer:^4.0; fi
 
 script:
   - |
-      if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION = 7.2 ]]; then
+      if [[ $DEFAULT == 1 && $TRAVIS_PHP_VERSION == 7.2 ]]; then
         mkdir -p build/logs
         vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
       fi
@@ -56,7 +55,7 @@ script:
 
 after_success:
   - |
-      if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION = 7.2 ]]; then
+      if [[ $DEFAULT == 1 && $TRAVIS_PHP_VERSION == 7.2 ]]; then
         wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
         chmod +x php-coveralls.phar
         ./php-coveralls.phar

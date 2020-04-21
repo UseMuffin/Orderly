@@ -15,7 +15,7 @@ Using [Composer][composer]:
 composer require muffin/orderly
 ```
 
-Then load the plugin using the shell command:
+Then load the plugin using the console command:
 
 ```
 bin/cake plugin load Muffin/Orderly
@@ -97,4 +97,4 @@ Copyright (c) 2015-Present, [Use Muffin][muffin] and licensed under [The MIT Lic
 [composer]:http://getcomposer.org
 [mit]:http://www.opensource.org/licenses/mit-license.php
 [muffin]:http://usemuffin.com
-[standards]:http://book.cakephp.org/3.0/en/contributing/cakephp-coding-conventions.html
+[standards]:http://book.cakephp.org/3/en/contributing/cakephp-coding-conventions.html
