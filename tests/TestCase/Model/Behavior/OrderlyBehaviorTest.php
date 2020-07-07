@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Muffin\Orderly\Test\TestCase\Model\Behavior;
 
 use Cake\Database\ValueBinder;
@@ -12,14 +14,14 @@ class OrderlyBehaviorTest extends TestCase
         'core.Posts',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->Table = TableRegistry::get('Posts');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

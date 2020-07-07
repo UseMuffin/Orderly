@@ -1,7 +1,7 @@
 # Orderly
 
 [![Build Status](https://img.shields.io/travis/UseMuffin/Orderly/master.svg?style=flat-square)](https://travis-ci.org/UseMuffin/Orderly)
-[![Coverage](https://img.shields.io/codecov/c/github/UseMuffin/Orderly.svg?style=flat-square)](https://codecov.io/github/UseMuffin/Orderly)
+[![Coverage](https://img.shields.io/coveralls/github/UseMuffin/Orderly?style=flat-square)](https://coveralls.io/github/UseMuffin/Orderly)
 [![Total Downloads](https://img.shields.io/packagist/dt/muffin/orderly.svg?style=flat-square)](https://packagist.org/packages/muffin/orderly)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
@@ -48,7 +48,7 @@ condition using `callback` option. The order will be applied if callback returns
 ```php
 $this->addBehavior('Muffin/Orderly.Orderly', [
     'order' => ['Alias.field_name' => 'DESC'],
-    'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+    'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
         //return a boolean
     }
 ]);
@@ -61,13 +61,13 @@ on return value of their respective callbacks:
 $this->addBehavior('Muffin/Orderly.Orderly', [
     [
         'order' => ['Alias.field_name' => 'DESC'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
     [
         'order' => ['Alias.another_field'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, $primary) {
+        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
