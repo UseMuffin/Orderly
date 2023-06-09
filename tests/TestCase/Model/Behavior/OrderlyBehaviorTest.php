@@ -3,30 +3,33 @@ declare(strict_types=1);
 
 namespace Muffin\Orderly\Test\TestCase\Model\Behavior;
 
+use ArrayObject;
 use Cake\Database\ValueBinder;
 use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
+use Cake\ORM\Table;
 use Cake\TestSuite\TestCase;
 
 class OrderlyBehaviorTest extends TestCase
 {
-    public $fixtures = [
+    protected array $fixtures = [
         'core.Posts',
     ];
+
+    protected Table $Table;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->Table = TableRegistry::get('Posts');
+        $this->Table = $this->getTableLocator()->get('Posts');
     }
 
     public function tearDown(): void
     {
         parent::tearDown();
 
-        TableRegistry::clear();
-        unset($this->Table, $this->Behavior);
+        $this->getTableLocator()->clear();
+        unset($this->Table);
     }
 
     public function testInitialize()
@@ -35,7 +38,7 @@ class OrderlyBehaviorTest extends TestCase
 
         $expected = [
             [
-                'order' => $this->Table->aliasField($this->Table->getDisplayField()),
+                'order' => ['Posts.title'],
                 'callback' => null,
             ],
         ];
@@ -66,7 +69,7 @@ class OrderlyBehaviorTest extends TestCase
 
         $expected = [
             [
-                'order' => 'Posts.title',
+                'order' => ['Posts.title'],
                 'callback' => $callback,
             ],
         ];
@@ -83,7 +86,7 @@ class OrderlyBehaviorTest extends TestCase
 
         $expected = [
             [
-                'order' => 'Posts.title',
+                'order' => ['Posts.title'],
                 'callback' => null,
             ],
             [
@@ -104,7 +107,7 @@ class OrderlyBehaviorTest extends TestCase
 
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->query();
-        $behavior->beforeFind($event, $query, new \ArrayObject(), true);
+        $behavior->beforeFind($event, $query, new ArrayObject(), true);
         $this->assertEquals(1, count($query->clause('order')));
     }
 
@@ -115,8 +118,8 @@ class OrderlyBehaviorTest extends TestCase
 
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->find()
-            ->order('author_id');
-        $behavior->beforeFind($event, $query, new \ArrayObject(), true);
+            ->orderBy('author_id');
+        $behavior->beforeFind($event, $query, new ArrayObject(), true);
         $this->assertEquals(1, count($query->clause('order')));
     }
 
@@ -149,24 +152,24 @@ class OrderlyBehaviorTest extends TestCase
         $event = new Event('Model.beforeFind', $this);
         $query = $this->Table->find();
 
-        $behavior->beforeFind($event, $query, new \ArrayObject(['field' => null]), true);
+        $behavior->beforeFind($event, $query, new ArrayObject(['field' => null]), true);
         $this->assertNull($query->clause('order'));
 
         $valueBinder = new ValueBinder();
 
-        $behavior->beforeFind($event, $query, new \ArrayObject(['field' => 'first']), true);
+        $behavior->beforeFind($event, $query, new ArrayObject(['field' => 'first']), true);
         $orderClause = $query->clause('order');
         $this->assertCount(1, $orderClause);
         $this->assertEquals('ORDER BY first', $orderClause->sql($valueBinder));
 
         $query = $this->Table->find();
-        $behavior->beforeFind($event, $query, new \ArrayObject(['field' => 'second']), true);
+        $behavior->beforeFind($event, $query, new ArrayObject(['field' => 'second']), true);
         $orderClause = $query->clause('order');
         $this->assertCount(1, $orderClause);
         $this->assertEquals('ORDER BY second', $orderClause->sql($valueBinder));
 
         $query = $this->Table->find();
-        $behavior->beforeFind($event, $query, new \ArrayObject(['field' => '_all_']), true);
+        $behavior->beforeFind($event, $query, new ArrayObject(['field' => '_all_']), true);
         $orderClause = $query->clause('order');
         $this->assertCount(2, $orderClause);
         $this->assertEquals('ORDER BY first, second', $orderClause->sql($valueBinder));

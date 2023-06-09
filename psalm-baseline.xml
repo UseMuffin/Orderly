@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<files>
-  <file src="src/Model/Behavior/OrderlyBehavior.php">
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$this-&gt;_table-&gt;getDisplayField()</code>
-    </PossiblyInvalidArgument>
-  </file>
-</files>
