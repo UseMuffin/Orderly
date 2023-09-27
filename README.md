@@ -1,7 +1,9 @@
 # Orderly
 
-[![Build Status](https://img.shields.io/travis/UseMuffin/Orderly/master.svg?style=flat-square)](https://travis-ci.org/UseMuffin/Orderly)
-[![Coverage](https://img.shields.io/coveralls/github/UseMuffin/Orderly?style=flat-square)](https://coveralls.io/github/UseMuffin/Orderly)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/UseMuffin/Orderly/ci.yml?style=flat-square
+&branch=master)](https://github.com/UseMuffin/Orderly/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Coverage](https://img.shields.io/codecov/c/github/UseMuffin/Orderly/master?style=flat-square
+)](https://app.codecov.io/gh/UseMuffin/Orderly)
 [![Total Downloads](https://img.shields.io/packagist/dt/muffin/orderly.svg?style=flat-square)](https://packagist.org/packages/muffin/orderly)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
@@ -23,8 +25,7 @@ bin/cake plugin load Muffin/Orderly
 
 ## What is does
 
-Orderly allow you to set default `ORDER` clause for your table queries, similar
-to the functionality provided by `Model::$order` property of CakePHP 2.x.
+Orderly allow you to set default `ORDER` clause for your table's `SELECT` queries.
 
 ## Usage
 
@@ -38,7 +39,7 @@ $this->addBehavior('Muffin/Orderly.Orderly');
 $this->addBehavior('Muffin/Orderly.Orderly', ['order' => $this->aliasField('field_name')]);
 ```
 
-Value for `order` key can any valid value that `\Cake\ORM\Query::order()` takes.
+Value for `order` key can any valid value that `\Cake\ORM\Query::orderBy()` takes.
 The default order clause will only be applied to the primary query and when no
 custom order clause has already been set for the query.
 
@@ -97,4 +98,4 @@ Copyright (c) 2015-Present, [Use Muffin][muffin] and licensed under [The MIT Lic
 [composer]:http://getcomposer.org
 [mit]:http://www.opensource.org/licenses/mit-license.php
 [muffin]:http://usemuffin.com
-[standards]:http://book.cakephp.org/3/en/contributing/cakephp-coding-conventions.html
+[standards]:http://book.cakephp.org/5/en/contributing/cakephp-coding-conventions.html

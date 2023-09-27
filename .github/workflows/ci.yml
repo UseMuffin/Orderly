@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+permissions:
+  contents: read
+
+jobs:
+  testsuite:
+    uses: ADmad/.github/.github/workflows/testsuite-with-db.yml@master
+    secrets: inherit
+
+  cs-stan:
+    uses: ADmad/.github/.github/workflows/cs-stan.yml@master
+    secrets: inherit

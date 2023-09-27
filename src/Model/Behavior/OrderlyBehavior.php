@@ -6,14 +6,14 @@ namespace Muffin\Orderly\Model\Behavior;
 use ArrayObject;
 use Cake\Event\EventInterface;
 use Cake\ORM\Behavior;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 class OrderlyBehavior extends Behavior
 {
     /**
      * Initialize behavior
      *
-     * @param array $config Config
+     * @param array<string, mixed> $config Config
      * @return void
      */
     public function initialize(array $config): void
@@ -24,15 +24,15 @@ class OrderlyBehavior extends Behavior
     }
 
     /**
-     * Add default order clause to query as necessary.
+     * Add the default order clause to the query as necessary.
      *
      * @param \Cake\Event\EventInterface $event Event
-     * @param \Cake\ORM\Query $query Query
+     * @param \Cake\ORM\Query\SelectQuery $query Query
      * @param \ArrayObject $options Options
      * @param bool $primary Boolean indicating whether it's primary query.
      * @return void
      */
-    public function beforeFind(EventInterface $event, Query $query, ArrayObject $options, bool $primary)
+    public function beforeFind(EventInterface $event, SelectQuery $query, ArrayObject $options, bool $primary): void
     {
         if ($query->clause('order')) {
             return;
@@ -44,7 +44,7 @@ class OrderlyBehavior extends Behavior
                 empty($config['callback'])
                 || call_user_func($config['callback'], $query, $options, $primary)
             ) {
-                $query->order($config['order']);
+                $query->orderBy($config['order']);
             }
         }
     }
@@ -52,7 +52,7 @@ class OrderlyBehavior extends Behavior
     /**
      * Normalize configuration.
      *
-     * @param array $orders Orders config
+     * @param array<string, mixed> $orders Orders config
      * @return void
      */
     protected function _normalizeConfig(array $orders): void
@@ -64,7 +64,10 @@ class OrderlyBehavior extends Behavior
         }
 
         $default = [
-            'order' => $this->_table->aliasField($this->_table->getDisplayField()),
+            'order' => array_map(
+                $this->_table->aliasField(...),
+                (array)$this->_table->getDisplayField()
+            ),
             'callback' => null,
         ];
 
