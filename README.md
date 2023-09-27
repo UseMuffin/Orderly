@@ -1,7 +1,6 @@
 # Orderly
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/UseMuffin/Orderly/ci.yml?style=flat-square
-&branch=master)](https://github.com/UseMuffin/Orderly/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/UseMuffin/Orderly/ci.yml?style=flat-square&branch=master)](https://github.com/UseMuffin/Orderly/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Coverage](https://img.shields.io/codecov/c/github/UseMuffin/Orderly/master?style=flat-square
 )](https://app.codecov.io/gh/UseMuffin/Orderly)
 [![Total Downloads](https://img.shields.io/packagist/dt/muffin/orderly.svg?style=flat-square)](https://packagist.org/packages/muffin/orderly)
