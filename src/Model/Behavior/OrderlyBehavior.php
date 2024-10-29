@@ -57,7 +57,9 @@ class OrderlyBehavior extends Behavior
      */
     protected function _normalizeConfig(array $orders): void
     {
-        if (empty($orders)) {
+        unset($orders['className']);
+
+        if ($orders === []) {
             $orders = [[]];
         } elseif (isset($orders['order']) || isset($orders['callback'])) {
             $orders = [$orders];
