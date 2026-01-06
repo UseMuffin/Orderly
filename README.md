@@ -12,13 +12,13 @@ Allows setting default order for your tables.
 
 Using [Composer][composer]:
 
-```
+```sh
 composer require muffin/orderly
 ```
 
 Then load the plugin using the console command:
 
-```
+```sh
 bin/cake plugin load Muffin/Orderly
 ```
 
@@ -38,7 +38,7 @@ $this->addBehavior('Muffin/Orderly.Orderly');
 $this->addBehavior('Muffin/Orderly.Orderly', ['order' => $this->aliasField('field_name')]);
 ```
 
-Value for `order` key can any valid value that `\Cake\ORM\Query::orderBy()` takes.
+Value for `order` key can any valid value that `\Cake\ORM\Query\SelectQuery::orderBy()` takes.
 The default order clause will only be applied to the primary query and when no
 custom order clause has already been set for the query.
 
@@ -48,7 +48,7 @@ condition using `callback` option. The order will be applied if callback returns
 ```php
 $this->addBehavior('Muffin/Orderly.Orderly', [
     'order' => ['Alias.field_name' => 'DESC'],
-    'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
+    'callback' => function (SelectQuery $query, ArrayObject $options, bool $primary) {
         //return a boolean
     }
 ]);
@@ -61,13 +61,13 @@ on return value of their respective callbacks:
 $this->addBehavior('Muffin/Orderly.Orderly', [
     [
         'order' => ['Alias.field_name' => 'DESC'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
+        'callback' => function (SelectQuery $query, ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
     [
         'order' => ['Alias.another_field'],
-        'callback' => function (\Cake\ORM\Query $query, \ArrayObject $options, bool $primary) {
+        'callback' => function (SelectQuery $query, ArrayObject $options, bool $primary) {
             //return a boolean
         }
     ],
