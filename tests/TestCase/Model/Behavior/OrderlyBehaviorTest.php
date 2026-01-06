@@ -44,7 +44,7 @@ class OrderlyBehaviorTest extends TestCase
         ];
         $this->assertEquals(
             $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders']
+            $this->Table->behaviors()->Orderly->getConfig()['orders'],
         );
 
         $this->Table->removeBehavior('Orderly');
@@ -58,7 +58,7 @@ class OrderlyBehaviorTest extends TestCase
         ];
         $this->assertEquals(
             $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders']
+            $this->Table->behaviors()->Orderly->getConfig()['orders'],
         );
 
         $callback = function () {
@@ -75,7 +75,7 @@ class OrderlyBehaviorTest extends TestCase
         ];
         $this->assertEquals(
             $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders']
+            $this->Table->behaviors()->Orderly->getConfig()['orders'],
         );
 
         $this->Table->removeBehavior('Orderly');
@@ -96,7 +96,7 @@ class OrderlyBehaviorTest extends TestCase
         ];
         $this->assertEquals(
             $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders']
+            $this->Table->behaviors()->Orderly->getConfig()['orders'],
         );
     }
 

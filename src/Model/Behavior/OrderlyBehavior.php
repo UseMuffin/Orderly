@@ -68,7 +68,7 @@ class OrderlyBehavior extends Behavior
         $default = [
             'order' => array_map(
                 $this->_table->aliasField(...),
-                (array)$this->_table->getDisplayField()
+                (array)$this->_table->getDisplayField(),
             ),
             'callback' => null,
         ];
