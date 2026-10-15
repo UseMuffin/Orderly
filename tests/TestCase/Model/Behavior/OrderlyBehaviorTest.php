@@ -67,16 +67,16 @@ class OrderlyBehaviorTest extends TestCase
         $this->Table->removeBehavior('Orderly');
         $this->Table->addBehavior('Muffin/Orderly.Orderly', ['callback' => $callback]);
 
+        $orders = $this->Table->behaviors()->Orderly->getConfig()['orders'];
+        $this->assertSame($callback, $orders[0]['callback']);
+        unset($orders[0]['callback']);
+
         $expected = [
             [
                 'order' => ['Posts.title'],
-                'callback' => $callback,
             ],
         ];
-        $this->assertEquals(
-            $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders'],
-        );
+        $this->assertEquals($expected, $orders);
 
         $this->Table->removeBehavior('Orderly');
         $this->Table->addBehavior('Muffin/Orderly.Orderly', [
@@ -84,20 +84,20 @@ class OrderlyBehaviorTest extends TestCase
             ['order' => 'published', 'callback' => $callback],
         ]);
 
+        $orders = $this->Table->behaviors()->Orderly->getConfig()['orders'];
+        $this->assertNull($orders[0]['callback']);
+        $this->assertSame($callback, $orders[1]['callback']);
+        unset($orders[0]['callback'], $orders[1]['callback']);
+
         $expected = [
             [
                 'order' => ['Posts.title'],
-                'callback' => null,
             ],
             [
                 'order' => 'published',
-                'callback' => $callback,
             ],
         ];
-        $this->assertEquals(
-            $expected,
-            $this->Table->behaviors()->Orderly->getConfig()['orders'],
-        );
+        $this->assertEquals($expected, $orders);
     }
 
     public function testBeforeFind()

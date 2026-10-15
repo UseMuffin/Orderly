@@ -20,15 +20,15 @@ class OrderlyBehavior extends Behavior
     {
         parent::initialize($config);
 
-        $this->_normalizeConfig($config);
+        $this->normalizeConfig($config);
     }
 
     /**
      * Add the default order clause to the query as necessary.
      *
-     * @param \Cake\Event\EventInterface $event Event
-     * @param \Cake\ORM\Query\SelectQuery $query Query
-     * @param \ArrayObject $options Options
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event Event
+     * @param \Cake\ORM\Query\SelectQuery<\Cake\Datasource\EntityInterface|array<mixed>> $query Query
+     * @param \ArrayObject<string, mixed> $options Options
      * @param bool $primary Boolean indicating whether it's primary query.
      * @return void
      */
@@ -38,7 +38,7 @@ class OrderlyBehavior extends Behavior
             return;
         }
 
-        $orders = $this->_config['orders'];
+        $orders = $this->config['orders'];
         foreach ($orders as $config) {
             if (
                 empty($config['callback'])
@@ -55,7 +55,7 @@ class OrderlyBehavior extends Behavior
      * @param array<string, mixed> $orders Orders config
      * @return void
      */
-    protected function _normalizeConfig(array $orders): void
+    protected function normalizeConfig(array $orders): void
     {
         unset($orders['className']);
 
@@ -67,8 +67,8 @@ class OrderlyBehavior extends Behavior
 
         $default = [
             'order' => array_map(
-                $this->_table->aliasField(...),
-                (array)$this->_table->getDisplayField(),
+                $this->table->aliasField(...),
+                (array)$this->table->getDisplayField(),
             ),
             'callback' => null,
         ];
@@ -77,7 +77,7 @@ class OrderlyBehavior extends Behavior
             $orders[$key] = $orders[$key] + $default;
         }
 
-        $this->_config = [
+        $this->config = [
             'orders' => $orders,
         ];
     }
