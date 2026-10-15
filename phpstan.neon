@@ -1,9 +1,6 @@
 parameters:
-	level: 7
-	treatPhpDocTypesAsCertain: false
+	level: 8
 	bootstrapFiles:
 		- tests/bootstrap.php
 	paths:
 		- src
-	ignoreErrors:
-		- identifier: missingType.generics

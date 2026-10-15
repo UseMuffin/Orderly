@@ -97,4 +97,4 @@ Copyright (c) 2015-Present, [Use Muffin][muffin] and licensed under [The MIT Lic
 [composer]:http://getcomposer.org
 [mit]:http://www.opensource.org/licenses/mit-license.php
 [muffin]:http://usemuffin.com
-[standards]:http://book.cakephp.org/5/en/contributing/cakephp-coding-conventions.html
+[standards]:http://book.cakephp.org/6/en/contributing/cakephp-coding-conventions.html

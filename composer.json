@@ -30,11 +30,12 @@
         "source": "https://github.com/usemuffin/orderly"
     },
     "require": {
-        "cakephp/orm": "^5.0"
+        "php": ">=8.5",
+        "cakephp/orm": "^6.0"
     },
     "require-dev": {
-        "cakephp/cakephp": "^5.0",
-        "phpunit/phpunit": "^10.5.58 || ^11.5.3 || ^12.4"
+        "cakephp/cakephp": "^6.0",
+        "phpunit/phpunit": "^13.2"
     },
     "autoload": {
         "psr-4": {
@@ -52,5 +53,7 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
